@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PremierLeaguePredictor</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+   
+    <style>
+        
+    .shadow-box {
+            background-color: #500050;
+            width: 90%;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            font-family: Arial, sans-serif;
+            color: #000;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            justify-content: center;
+            align-items: center;
+           
+    }
+    .logo {
+            background-color: #fff;
+            border-radius: 4px;
+            width: 45px;
+            height: 45px;
+
+        }
+
+        .head {
+            
+            color: #fff;
+            display: flex;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="shadow-box">
+    <div class="head">
+        <div class="logo">
+    <img src="https://www.bing.com/th?id=OSB.9ZxSIExo340HqhwymNqFLw--.png&w=50&h=50&qlt=90&o=6&dpr=2&pid=BingSports" alt="cat" width="45" height="45">
+         </div>
+         <div>
+    <h3>Premier League Predictor</h3>
+    <p>2023-24 Season</p>
+    </div>
+    </div>
+    <label for="team1">Home Team:</label>
+    <select id="team1">
+        <option selected>Select Team</option>
+        <option value="1">ManCity</option>
+        <option value="2">Tottenham</option>
+        <option value="3">Liverpool</option>
+        <option value="4">Arsenal</option>
+        <option value="5">Brighton</option>
+        <option value="6">WestHam</option>
+        <option value="7">AstonVilla</option>
+        <option value="8">Nottingham</option>
+        <option value="9">CrystalPalace</option>
+        <option value="10">Fulham</option>
+        <option value="11">Brentford</option>
+        <option value="12">Newcastle</option>
+        <option value="13">ManUnited</option>
+        <option value="14">Chelsea</option>
+        <option value="15">Bournemount</option>
+        <option value="16">Wolverhamptom</option>
+        <option value="17">Sheffield</option>
+        <option value="18">Everton</option>
+        <option value="19">Burnley</option>
+        <option value="20">Luton</option>
+        
+    </select><br>
+
+    <label for="team2">Away Team:</label>
+    <select id="team2">
+        <option selected>Select Team</option>
+        <option value="1">ManCity</option>
+        <option value="2">Tottenham</option>
+        <option value="3">Liverpool</option>
+        <option value="4">Arsenal</option>
+        <option value="5">Brighton</option>
+        <option value="6">WestHam</option>
+        <option value="7">AstonVilla</option>
+        <option value="8">Nottingham</option>
+        <option value="9">CrystalPalace</option>
+        <option value="10">Fulham</option>
+        <option value="11">Brentford</option>
+        <option value="12">Newcastle</option>
+        <option value="13">ManUnited</option>
+        <option value="14">Chelsea</option>
+        <option value="15">Bournemount</option>
+        <option value="16">Wolverhamptom</option>
+        <option value="17">Sheffield</option>
+        <option value="18">Everton</option>
+        <option value="19">Burnley</option>
+        <option value="20">Luton</option>
+    </select><br>
+
+    <button id="predictButton">Predict</button>
+
+    <h2>Prediction Result:</h2>
+    <p id="prediction">Prediction:</p>
+   </div>
+    <script>
+        // Function to predict the match result
+        function predictMatch() {
+            const ManCity = 1;
+            const Tottenham = 2;
+            const Liverpool = 3;
+            const Arsenal = 4;
+            const Brighton = 5;
+            const WestHam = 6;
+            const AstonVilla = 7;
+            const Nottingham = 8;
+            const CrystalPalace = 9;
+            const Fulham = 10;
+            const Brentford = 11;
+            const Newcastle = 12;
+            const ManUnited = 13;
+            const Chelsea = 14;
+            const Bournemount = 15;
+            const Wolverhamptom = 16;
+            const Sheffield = 17;
+            const Everton = 18;
+            const Burnley = 19;
+            const Luton = 20;
+    
+    
+            const team1Value = parseFloat(document.getElementById('team1').value);
+            const team2Value = parseFloat(document.getElementById('team2').value);
+
+            // Load Brain.js from the CDN
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/brain.js';
+            script.async = true;
+            script.onload = function () {
+                // Create a neural network
+                const net = new brain.NeuralNetwork();
+
+                // Train the network with historical data
+               // Train the network with historical data
+net.train([
+    // Training data
+        // WEEK 32
+    { input: [Burnley,ManCity], output: [1] },
+    { input: [Arsenal,Nottingham], output: [0] },
+    { input: [Bournemount,WestHam], output: [0.5] },
+    { input: [Everton,Fulham], output: [1] },
+    { input: [Brighton,Luton], output: [0] },
+    { input: [Sheffield,CrystalPalace], output: [1] },
+    { input: [Newcastle,AstonVilla], output: [0] },
+    { input: [Brentford,Tottenham], output: [0.5] },
+    { input: [Chelsea,Liverpool], output: [0.5] },
+    { input: [ManUnited,Wolverhamptom], output: [0] },
+    { input: [Nottingham,Sheffield], output: [0] },
+    { input: [Liverpool,Bournemount], output: [0] },
+    { input: [Fulham,Brentford], output: [1] },
+    { input: [Wolverhamptom,Brighton], output: [1] },
+    { input: [Tottenham,ManUnited], output: [0] },
+    { input: [ManCity,Newcastle], output: [0] },
+    { input: [AstonVilla,Everton], output: [0] },
+    { input: [WestHam,Chelsea], output: [0] },
+    { input: [CrystalPalace,Arsenal], output: [1] },
+    { input: [Chelsea,Luton], output: [0] },
+    { input: [Bournemount,Tottenham], output: [1] },
+    { input: [Everton,Wolverhamptom], output: [1] },
+    { input: [Brentford,CrystalPalace], output: [0.5] },
+    { input: [Arsenal,Fulham], output: [0.5] },
+    { input: [ManUnited,Nottingham], output: [0] },
+    { input: [Brighton,WestHam], output: [1] },
+    { input: [Burnley,AstonVilla], output: [1] },
+    { input: [Sheffield,ManCity], output: [1] },
+    { input: [Newcastle,Liverpool], output: [1] },
+    { input: [Luton,WestHam], output: [1] },
+    { input: [Sheffield,Everton], output: [0.5] },
+    { input: [ManCity,Fulham], output: [0] },
+    { input: [Brentford,Tottenham], output: [0.5] },
+    { input: [Chelsea,Nottingham], output: [1] },
+    { input: [Burnley,Tottenham], output: [1] },
+    { input: [Brighton,Newcastle], output: [0] },
+    { input: [Liverpool,AstonVilla], output: [0] },
+    { input: [CrystalPalace,Wolverhamptom], output: [0] },
+    { input: [Arsenal,ManUnited], output: [0] },
+    { input: [Wolverhamptom,Liverpool], output: [1] },
+    { input: [Fulham,Luton], output: [0] },
+    { input: [Tottenham,Sheffield], output: [0] },
+    { input: [ManUnited,Brighton], output: [1] },
+    { input: [WestHam,ManCity], output: [1] },
+    { input: [AstonVilla,CrystalPalace], output: [0] },
+    { input: [Newcastle,Brentford], output: [0] },
+    { input: [Bournemount,Chelsea], output: [0.5] },
+    { input: [Everton,Arsenal], output: [1] },
+    { input: [Nottingham,Burnley], output: [0.5] }
+   
+
+    
+
+    //https://visionx.jikasports.com/football/match-scores
+    
+]);
+
+
+                // Make a prediction
+                const output = net.run( [team1Value,team2Value]);
+                
+                let predictionMessage;
+    if (output < 0.2) {
+        predictionMessage = `Prediction: Home Team Wins, ${output}`;
+    } else if (output > 0.8) {
+        predictionMessage =  `Prediction: Away Team Wins, ${output}`;
+    } else {
+        predictionMessage = `Prediction: Draw, ${output}`;
+    }
+
+    const predictionElement = document.getElementById('prediction');
+    predictionElement.textContent = predictionMessage;
+            };
+
+            document.body.appendChild(script);
+        }
+
+        // Attach the predictMatch function to the button click event
+        document.getElementById('predictButton').addEventListener('click', predictMatch);
+    </script>
+</body>
+</html>
