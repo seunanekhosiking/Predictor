@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PremierLeaguePredictor</title>
+    <title>Premier League Predictor</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
@@ -11,8 +11,9 @@
    
     <style>
        
-       body{
-        background: no-repeat center linear-gradient(to top, #600060, #d000d0, #600060);
+       html{
+        display:flex;
+        background: no-repeat center linear-gradient(to top, #000000, #600060);
         width: 100%;
         height: 100%;
         justify-content: center;
@@ -21,7 +22,7 @@
     .shadow-box {
             background-color: #500050;
             width: 90%;
-            max-width: 250px;
+            max-width: 300px;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
             font-family: Arial, sans-serif;
             color: #000;
@@ -29,10 +30,9 @@
             padding: 10px;
             margin: 10px;
             justify-content: center;
-            align-items: center;
-            
-           
+            align-items: center;   
     }
+  
     .logo {
             background-color: #fff;
             border-radius: 4px;
@@ -59,19 +59,62 @@
         padding-left: 5px;
        }
        .Prediction {
-        font-size: 20px;
+        color: #fff;
+        font-size: 15px;
         margin: 0px;
         padding: 0px;
-        padding-top: 3px;
+        padding-top: 50px;
         padding-left: 5px;
+        font-weight: 700;
+       }
+       .predictButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+       
        }
         .head {
             height: 45px;
             color: #fff;
             display: flex;
         }
-
-       
+      .teams {
+        display: flex;
+        margin-top: 15px;
+      }
+      .home-sci a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 0.1px solid #fff;
+  font-size: 20px;
+  
+  color: #fff;
+  text-decoration: none;
+  margin: 5px 10px 0px 0;
+  opacity: 0;
+  animation: slideRight 1s ease forwards;
+  
+}
+.home-sci a:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 20px #fff;
+}
+@keyframes slideRight {
+  0% {
+   transform: translateX(-500px);
+   opacity: 0;
+   }
+   100% {
+     transform: translateX(0px);
+     opacity: 1;
+     }
+ }
     </style>
 </head>
 <body>
@@ -81,12 +124,13 @@
     <img src="https://www.bing.com/th?id=OSB.9ZxSIExo340HqhwymNqFLw--.png&w=50&h=50&qlt=90&o=6&dpr=2&pid=BingSports" alt="cat" width="45" height="45">
          </div>
          <div class="title">
-    <h3><span id="element"></span></h3>
+    <h3>Premier League Predictor</h3>
     
-    <p>2023-24 Season</p>
+    <p><span id="element"></span></p>
     </div>
     </div>
-    <label for="team1">Home Team:</label>
+    <div class="teams">
+    <div>
     <select id="team1">
         
         <option selected value="1">ManCity</option>
@@ -111,8 +155,10 @@
         <option value="20">Luton</option>
         
     </select><br>
-   
-    <label for="team2">Away Team:</label>
+    <label for="team1">Home Team</label>
+    </div>
+    <h3>__vs__</h3>
+    <div>
     <select id="team2">
         <option selected>Select Team</option>
         <option value="1">ManCity</option>
@@ -136,11 +182,20 @@
         <option value="19">Burnley</option>
         <option value="20">Luton</option>
     </select><br>
-
+    <label for="team2">Away Team</label>
+    </div>
+    </div>
+    <div class="predictButton">
     <button id="predictButton">Predict</button>
+</div>
 
-    <h2>Prediction Result:</h2>
     <p class="Prediction" id="prediction">Prediction:</p>
+    <div class="home-sci">
+        <a href="#"><i class='bx bxl-facebook'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+        <a href="#"><i class='bx bxl-whatsapp'></i></a>
+        <a href="#"><i class='bx bxl-tiktok'></i></a>
+     </div>
    </div>
     <script>
         // Function to predict the match result
@@ -232,6 +287,12 @@ net.train([
     { input: [Bournemount,Chelsea], output: [0.5] },
     { input: [Everton,Arsenal], output: [1] },
     { input: [Nottingham,Burnley], output: [0.5] }
+    //{ input: [CrystalPalace,Fulham], output: [1] },
+    //{ input: [ManCity,Nottingham], output: [0] },
+    //{ input: [Luton,Wolverhamptom], output: [0.5] },
+    //{ input: [Brentford,Everton], output: [0] },
+    //{ input: [Burnley,ManUnited], output: [0.5] }
+   
    
 
     
@@ -244,13 +305,14 @@ net.train([
                 // Make a prediction
                 const output = net.run( [team1Value,team2Value]);
                 
+                
                 let predictionMessage;
     if (output < 0.2) {
-        predictionMessage = `Prediction: Home Team Wins, ${output}`;
+        predictionMessage = `Prediction: Home Win`;
     } else if (output > 0.8) {
-        predictionMessage =  `Prediction: Away Team Wins, ${output}`;
+        predictionMessage =  `Prediction: Away Win`;
     } else {
-        predictionMessage = `Prediction: Draw, ${output}`;
+        predictionMessage = `Prediction: Draw`;
     }
 
     const predictionElement = document.getElementById('prediction');
@@ -265,11 +327,11 @@ net.train([
     </script>
       <script>
         var typed = new Typed('#element', {
-          strings: ['Premier League Predictor'],
+          strings: ['2022-23 Season, Ops that season ended','2023-24 Season'],
           typeSpeed:30,
         backSpeed:30,
         backDelay:1000,
-        loop:true
+        loop:false
         });
       </script>
 </body>
