@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premier League Predictor</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
 <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
@@ -197,6 +198,11 @@
     </div>
     <div class="predictButton">
     <button id="predictButton">Predict</button>
+   
+        <a href="login.html"> <input type="submit" value="Back"></a>
+      
+
+    </form>
 </div>
 
     <p class="Prediction" id="prediction">Prediction:</p>
@@ -296,19 +302,16 @@ net.train([
     { input: [Newcastle,Brentford], output: [0] },
     { input: [Bournemount,Chelsea], output: [0.5] },
     { input: [Everton,Arsenal], output: [1] },
-    { input: [Nottingham,Burnley], output: [0.5] },
-    { input: [CrystalPalace,Fulham], output: [0.5] },
-    { input: [ManCity,Nottingham], output: [0] },
-    { input: [Luton,Wolverhamptom], output: [0.5] },
-    { input: [Brentford,Everton], output: [1] },
-    { input: [Burnley,ManUnited], output: [1] },
-     { input: [Chelsea,AstonVilla], output: [1] },
-     { input: [Brighton,Bournemount], output: [0] },
-    { input: [Arsenal,Tottenham], output: [0.5] },
-     { input: [Liverpool,WestHam], output: [0] },
-     { input: [Sheffield,Newcastle], output: [1] }
+    { input: [Nottingham,Burnley], output: [0.5] }
+    //{ input: [CrystalPalace,Fulham], output: [1] },
+    //{ input: [ManCity,Nottingham], output: [0] },
+    //{ input: [Luton,Wolverhamptom], output: [0.5] },
+    //{ input: [Brentford,Everton], output: [0] },
+    //{ input: [Burnley,ManUnited], output: [0.5] }
+   
    
 
+    
 
     //https://visionx.jikasports.com/football/match-scores
     
@@ -347,5 +350,15 @@ net.train([
         loop:false
         });
       </script>
+       <script>
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent the form from submitting for demonstration purposes
+            var clickedButton = document.activeElement;
+            if (clickedButton && clickedButton.value === "Back") {
+                // Handle the login button click
+                window.location.href = "login.html"; // Redirect to the home page
+            } 
+        });
+    </script>
 </body>
 </html>
